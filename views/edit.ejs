@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1>Edit Bike</h1><br>
+    <form action="/bkbikes/<%=bike.id%>?_method=PUT" method="POST">
+        <input type="text" name="category" placeholder="<%=bike.category%>"><br>
+        <input type="text" name="manufacturer" placeholder="<%=bike.manufacturer%>"><br>
+        <input type="text" name="model" placeholder="<%=bike.model%>"><br>
+        <input type="number" name="year" placeholder="<%=bike.year%>"><br>
+        <input type="text" name="image" placeholder="<%=bike.image%>"><br>
+        <input type="text" name="tags" placeholder="<%=bike.tags%>"><br>
+        <input type="submit" value="SUBMIT">
+    </form>
+  </body>
+</html>

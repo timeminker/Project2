@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1>Mountain Bikes</h1>
+    <% for (let i = 0; i < bikes.length; i++) { %>
+      <% if (bikes[i].category == 'Mountain') { %>
+        <a href="/bkbikes/<%=bikes[i].id%>"><img src="<%=bikes[i].image%>" width='150px' height='250px' alt="<%=bikes[i].title%>"></a>
+      <% } %>
+
+    <% } %>
+    <form class="" action="/bkbikes/new">
+      <button type="submit" >ADD NEW BIKE</button>
+    </form><br><br>
+  </body>
+</html>

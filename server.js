@@ -52,16 +52,121 @@ app.use(methodOverride('_method'));// allow POST, PUT and DELETE from a form
 // Routes
 //___________________
 //seed - use once!
-app.get/'bkbikes/seed', (req, res) => {
-  Bike.create(seedData, (err, createdData) => {
-    console.log('seed added to DB');
-  })
-}
+// app.get('/bkbikes/seed', (req, res) => {
+//   Bike.create(seedData, (err, createdData) => {
+//     if (err) {
+//       console.log(err);
+//     } else {
+//       console.log('seed added to DB');
+//       res.redirect('/bkbikes')
+//     }
+//   })
+// })
 
 //localhost:3000
 app.get('/bkbikes' , (req, res) => {
-  res.send('Hello World!');
+  Bike.find({}, (err, allBikes) => {
+    res.render(
+      'index.ejs',
+      {
+        bikes: allBikes
+      })
+  })
 });
+
+//new bike
+app.get('/bkbikes/new', (req, res) => {
+  res.render('new.ejs')
+})
+
+//create
+app.post('/bkbikes', (req, res) => {
+  Bike.create(req.body, (err, createdBike) => {
+    res.redirect('/bkbikes')
+  })
+})
+
+//road bikes page
+app.get('/bkbikes/road' , (req, res) => {
+  Bike.find({}, (err, allBikes) => {
+    res.render(
+      'road.ejs',
+      {
+        bikes: allBikes
+      })
+  })
+});
+
+//mountain bikes page
+app.get('/bkbikes/mountain' , (req, res) => {
+  Bike.find({}, (err, allBikes) => {
+    res.render(
+      'mtb.ejs',
+      {
+        bikes: allBikes
+      })
+  })
+});
+
+//gravel bikes page
+app.get('/bkbikes/gravel' , (req, res) => {
+  Bike.find({}, (err, allBikes) => {
+    res.render(
+      'gravel.ejs',
+      {
+        bikes: allBikes
+      })
+  })
+});
+
+//custom bikes page
+app.get('/bkbikes/custom' , (req, res) => {
+  Bike.find({}, (err, allBikes) => {
+    res.render(
+      'custom.ejs',
+      {
+        bikes: allBikes
+      })
+  })
+});
+
+//edit bike
+app.get('/bkbikes/edit/:id', (req, res) => {
+  Bike.findById(req.params.id, (err, foundBike) => {
+    res.render(
+      'edit.ejs',
+      {
+        bike: foundBike
+      }
+    )
+  })
+})
+
+//show individual bikes
+app.get('/bkbikes/:id', (req, res) => {
+  Bike.findById(req.params.id, (err, foundBike) => {
+    res.render(
+      'show.ejs',
+      {
+        bike: foundBike
+      }
+    )
+  })
+})
+
+// put
+app.put('/bkbikes/:id', (req, res) => {
+  Bike.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updatedBike) => {
+    res.redirect('/bkbikes')
+  })
+})
+
+//delete bike
+app.delete('/bkbikes/:id', (req, res) => {
+  Bike.findByIdAndRemove(req.params.id, (err, deleteBike) => {
+    res.redirect('/bkbikes')
+  })
+})
 
 //for heroku
 app.get('/', (req, res) => {

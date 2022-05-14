@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
+const Review = require('./reviews.js')
 
 const bikeSchema = new Schema ({
   category: {type: String, required: true},
@@ -7,7 +8,8 @@ const bikeSchema = new Schema ({
   model: {type: String, required: true},
   year: Number,
   image: String,
-  tags: [{type: String, index: true}]
+  tags: [{type: String, index: true}],
+  reviews: [Review.schema]
 })
 
 const bikeCollection = mongoose.model('Bike', bikeSchema)

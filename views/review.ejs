@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1>Leave a Review of <%=bike.manufacturer%> <%=bike.model%></h1>
+    <form action="/review/<%=bike.id%>?_method=PUT" method="POST">
+      <input hidden type="text" name="id" value="<%=bike.id%>"><br>
+      <input type="text" name="name" placeholder="your name"/><br/>
+      <textarea name="review" placeholder="your review"></textarea><br/>
+      <input type="submit" value="Publish Review"/>
+    </form>
+  </body>
+</html>

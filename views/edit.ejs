@@ -7,11 +7,16 @@
   <body>
     <h1>Edit Bike</h1><br>
     <form action="/bkbikes/<%=bike.id%>?_method=PUT" method="POST">
-        <input type="text" name="category" placeholder="<%=bike.category%>"><br>
-        <input type="text" name="manufacturer" placeholder="<%=bike.manufacturer%>"><br>
-        <input type="text" name="model" placeholder="<%=bike.model%>"><br>
+        <select name="category" required="required" placeholder="<%=bike.category%>*">
+          <option value="Road">Road</option>
+          <option value="Mountain">Mountain</option>
+          <option value="Gravel">Gravel</option>
+          <option value="Custom">Custom</option>
+        </select><br>
+        <input type="text" name="manufacturer" required="required" placeholder="<%=bike.manufacturer%>*"><br>
+        <input type="text" name="model" required="required" placeholder="<%=bike.model%>*"><br>
         <input type="number" name="year" placeholder="<%=bike.year%>"><br>
-        <input type="text" name="image" placeholder="<%=bike.image%>"><br>
+        <input type="text" name="image" required="required" placeholder="<%=bike.image%>*"><br>
         <input type="text" name="tags" placeholder="<%=bike.tags%>"><br>
         <input type="submit" value="SUBMIT">
     </form>

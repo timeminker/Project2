@@ -7,6 +7,7 @@ const mongoose = require ('mongoose');
 const app = express ();
 const db = mongoose.connection;
 const Bike = require('./models/bikesschema.js')
+const Review = require('./models/reviews.js')
 const seedData = require('./models/data.js')
 require('dotenv').config()
 //___________________
@@ -85,6 +86,42 @@ app.post('/bkbikes', (req, res) => {
     res.redirect('/bkbikes')
   })
 })
+
+//review page
+app.get('/review/:id', (req, res) => {
+  Bike.findById(req.params.id, (err, foundBike) => {
+    res.render(
+      'review.ejs',
+      {
+        bike: foundBike
+      }
+    )
+  })
+})
+
+// create new review
+app.post('/review/:id', (req, res) => {
+  Bike.findById(req.params.id, (err, foundBike) => {
+    Review.create(req.body, (err, createdReview) => {
+      foundBike.reviews.push(createdReview)
+      foundBike.save((err, data) => {
+        console.log(createdReview);
+        // res.redirect('/bkbikes')
+      })
+    })
+  })
+})
+// app.post('/review', (req, res) => {
+//     Review.create(req.body, (err, createdReview) => {
+//       // foundBike.reviews.push(createdReview)
+//       // foundBike.save((err, data) => {
+//         console.log(createdReview);
+//         // res.redirect('/bkbikes')
+//       })
+//     })
+
+
+
 
 //road bikes page
 app.get('/bkbikes/road' , (req, res) => {

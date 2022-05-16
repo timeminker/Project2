@@ -10,6 +10,7 @@ const Bike = require('./models/bikesschema.js')
 const Review = require('./models/reviews.js')
 const seedData = require('./models/data.js')
 require('dotenv').config()
+const GOOGLE_API_KEY = process.env.API_KEY_GOOGLE_MAPS
 //___________________
 //Port
 //___________________
@@ -128,8 +129,14 @@ app.post('/review/:id', (req, res) => {
 //       })
 //     })
 
+//contact page
+app.get('/bkbikes/info', (req, res) => {
+  res.render('location.ejs',
+  {
+    GOOGLE_API_KEY: process.env.API_KEY_GOOGLE_MAPS
+  })
 
-
+})
 
 //road bikes page
 app.get('/bkbikes/road' , (req, res) => {

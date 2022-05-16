@@ -101,16 +101,24 @@ app.get('/review/:id', (req, res) => {
 
 // create new review
 app.post('/review/:id', (req, res) => {
-  Bike.findById(req.params.id, (err, foundBike) => {
-    Review.create(req.body, (err, createdReview) => {
-      foundBike.reviews.push(createdReview)
-      foundBike.save((err, data) => {
-        console.log(createdReview);
-        // res.redirect('/bkbikes')
-      })
+  Review.create(req.body, (err, review) => {
+    Bike.findByIdAndUpdate(req.params.id, {$push:{reviews: review}}, {new:true}, (err, newData) => {
+      res.redirect(`/bkbikes/${req.params.id}`)
     })
   })
 })
+
+// app.post('/review/:id', (req, res) => {
+//   Bike.findById(req.params.id, (err, foundBike) => {
+//     Review.create(req.body, (err, createdReview) => {
+//       foundBike.reviews.push(createdReview)
+//       foundBike.save((err, data) => {
+//         console.log(createdReview);
+//         res.redirect('/bkbikes')
+//       })
+//     })
+//   })
+// })
 // app.post('/review', (req, res) => {
 //     Review.create(req.body, (err, createdReview) => {
 //       // foundBike.reviews.push(createdReview)

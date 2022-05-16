@@ -9,6 +9,10 @@
     <img src="<%=bike.image%>" alt=""><br>
     <h2> <%=bike.manufacturer%> </h2><br>
     <h4> <%=bike.year%> </h4><br><br><br>
+    <% for (let i = 0; i < bike.reviews.length; i++) { %>
+      <p><%=bike.reviews[i].name%></p><br>
+      <p><%=bike.reviews[i].review%></p>
+    <% } %>
     <form action="/review/<%=bike.id%>">
       <button type="submit">LEAVE REVIEW</button>
     </form><br>

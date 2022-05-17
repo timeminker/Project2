@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
+  <%- include ('../partials/head.ejs') %>
   <body>
     <h1>Add New Bike</h1>
     <form action="/bkbikes" method="POST">
-        <input type="text" name="category" placeholder="category"><br>
+      <select name="category" required="required">
+        <option value="Road">Road</option>
+        <option value="Mountain">Mountain</option>
+        <option value="Gravel">Gravel</option>
+        <option value="Custom">Custom</option>
+      </select><br>
         <input type="text" name="manufacturer" placeholder="manufacturer"><br>
         <input type="text" name="model" placeholder="model"><br>
         <input type="number" name="year" placeholder="year"><br>

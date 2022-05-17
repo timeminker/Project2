@@ -1,159 +1,57 @@
-html,
-body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-#map-container {
+html, body {
+  font-family: 'Josefin Sans', sans-serif;
+  background-color: thistle;
   width: 100%;
-  height: 100%;
-  position: relative;
-  font-family: "Roboto", sans-serif;
-  box-sizing: border-box;
+  min-height: 100vh;
 }
-
-#map-container button {
-  background: none;
-  color: inherit;
-  border: none;
-  padding: 0;
-  font: inherit;
-  font-size: inherit;
-  cursor: pointer;
+#card1 {
+  grid-area: road;
 }
-
-#gmp-map {
-  position: absolute;
-  left: 22em;
-  top: 0;
-  right: 0;
-  bottom: 0;
+#card2 {
+  grid-area: mtb;
 }
-
-#locations-panel {
-  position: absolute;
-  left: 0;
-  width: 22em;
-  top: 0;
-  bottom: 0;
-  overflow-y: auto;
-  background: white;
-  padding: 0.5em;
-  box-sizing: border-box;
+#card3 {
+  grid-area: gravel;
 }
-
-@media only screen and (max-width: 876px) {
-  #gmp-map {
-    left: 0;
-    bottom: 50%;
-  }
-
-  #locations-panel {
-    top: 50%;
-    right: 0;
-    width: unset;
-  }
+#card4 {
+  grid-area: custom;
 }
-
-#locations-panel-list > header {
-  padding: 1.4em 1.4em 0 1.4em;
+#infobutton {
+  grid-area: info;
 }
-
-#locations-panel-list h1.search-title {
-  font-size: 1em;
-  font-weight: 500;
-  margin: 0;
+.bike-cards {
+  /* display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; */
+  display: grid;
+  grid-template-columns: [first] 1fr [line2] 1fr [line3] 1fr [line4] 1fr [line5] 1fr [last];
+  grid-template-rows: auto;
+  row-gap: 20px;
+  grid-template-areas:
+    ". road . mtb ."
+    ". gravel . custom ."
+    ". . info . ."
 }
+.bike-card {
 
-#locations-panel-list h1.search-title > img {
-  vertical-align: bottom;
-  margin-top: -1em;
 }
-
-#locations-panel-list .search-input {
-  width: 100%;
-  margin-top: 0.8em;
-  position: relative;
+img {
+  width: 400px;
+  height: auto;
 }
-
-#locations-panel-list .search-input input {
-  width: 100%;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 0.3em;
-  height: 2.2em;
-  box-sizing: border-box;
-  padding: 0 2.5em 0 1em;
-  font-size: 1em;
+footer {
+  align-self: end;
 }
-
-#locations-panel-list .search-input-overlay {
-  position: absolute;
+#show-page {
+  padding-left: 100px;
 }
-
-#locations-panel-list .search-input-overlay.search {
-  right: 2px;
-  top: 2px;
-  bottom: 2px;
-  width: 2.4em;
+#show-table {
+  border-collapse: collapse;
 }
-
-#locations-panel-list .search-input-overlay.search button {
-  width: 100%;
-  height: 100%;
-  border-radius: 0.2em;
-  color: black;
-  background: transparent;
+tr {
+  border-bottom: 2px solid black;
 }
-
-#locations-panel-list .search-input-overlay.search .icon {
-  margin-top: 0.05em;
-  vertical-align: top;
-}
-
-#locations-panel-list .section-name {
-  font-weight: 500;
-  font-size: 0.9em;
-  margin: 1.8em 0 1em 1.5em;
-}
-
-#locations-panel-list .location-result {
-  position: relative;
-  padding: 0.8em 3.5em 0.8em 1.4em;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-  cursor: pointer;
-}
-
-#locations-panel-list .location-result:first-of-type {
-  border-top: 1px solid rgba(0, 0, 0, 0.12);
-}
-
-#locations-panel-list .location-result:last-of-type {
-  border-bottom: none;
-}
-
-#locations-panel-list .location-result.selected {
-  outline: 2px solid #4285f4;
-}
-
-#locations-panel-list button.select-location {
-  margin-bottom: 0.6em;
-  text-align: left;
-}
-
-#locations-panel-list .location-result h2.name {
-  font-size: 1em;
-  font-weight: 500;
-  margin: 0;
-}
-
-#locations-panel-list .location-result .address {
-  font-size: 0.9em;
-  margin-bottom: 0.5em;
-}
-
-#location-results-list {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+#edit-page {
+  padding-left: 100px;
+  font-size: 24px;
 }

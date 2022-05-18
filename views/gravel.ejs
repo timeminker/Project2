@@ -2,13 +2,26 @@
 <html lang="en" dir="ltr">
   <%- include ('../partials/head.ejs') %>
   <body>
+    <h1 id="shop-name">BROOKLYN BIKES</h1>
     <h1>Gravel Bikes</h1>
+    <div class="bike-cards1">
     <% for (let i = 0; i < bikes.length; i++) { %>
       <% if (bikes[i].category == 'Gravel') { %>
-        <a href="/bkbikes/<%=bikes[i].id%>"><img src="<%=bikes[i].image%>" width='150px' height='250px' alt="<%=bikes[i].title%>"></a>
+
+          <div class="bike-card1">
+            <a href="/bkbikes/<%=bikes[i].id%>"><img src="<%=bikes[i].image%>" width='150px' height='250px' alt="<%=bikes[i].title%>" class="bikes-images"></a>
+            <div class="overlay">
+              <div class="text"><%=bikes[i].manufacturer%> <%=bikes[i].model%></div>
+              </div>
+            </div>
+          </div>
+
+
+        <!-- <a href="/bkbikes/<%=bikes[i].id%>"><img src="<%=bikes[i].image%>" width='150px' height='250px' alt="<%=bikes[i].title%>"></a> -->
       <% } %>
 
     <% } %>
+    </div>
     <form class="" action="/bkbikes/new">
       <button type="submit" >ADD NEW BIKE</button>
     </form><br><br>

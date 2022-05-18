@@ -3,6 +3,7 @@ html, body {
   background-color: thistle;
   width: 100%;
   min-height: 100vh;
+  color: white;
 }
 #card1 {
   grid-area: road;
@@ -33,7 +34,44 @@ html, body {
     ". . info . ."
 }
 .bike-card {
+  position: relative;
+}
 
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+a:link, a:hover, a:visited {
+  text-decoration: none;
+  color: white;
+}
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: lightsteelblue;
+  border-radius: 20px;
+}
+
+.bike-card:hover .overlay {
+  opacity: 1;
+}
+
+.text {
+  color: white;
+  font-size: 40px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
 }
 img {
   width: 400px;
@@ -54,4 +92,19 @@ tr {
 #edit-page {
   padding-left: 100px;
   font-size: 24px;
+}
+
+.bike-card1 {
+  position: relative;
+  max-width: 400px;
+  margin: 0;
+}
+.bike-card1:hover .overlay {
+  opacity: 1;
+}
+.bike-cards1 {
+  display: block;
+}
+.bikes-images {
+  border-radius: 21px;
 }

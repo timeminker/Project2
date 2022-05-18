@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <%- include ('../partials/head.ejs') %>
-  <body>
+  <body id="show-page">
+    <h1 id="shop-name"><a href="/bkbikes/">BROOKLYN BIKES</a> </h1>
     <h1>Leave a Review of <%=bike.manufacturer%> <%=bike.model%></h1>
     <form action="/review/<%=bike.id%>" method="POST">
       <input hidden type="text" name="id" value="<%=bike.id%>"><br>

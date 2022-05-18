@@ -2,6 +2,7 @@
 <html lang="en" dir="ltr">
   <%- include ('../partials/head.ejs') %>
   <body>
+    <h1 id="shop-name"><a href="/bkbikes/">BROOKLYN BIKES</a> </h1>
     <h1>Road Bikes</h1>
     <% for (let i = 0; i < bikes.length; i++) { %>
       <% if (bikes[i].category == 'Road') { %>

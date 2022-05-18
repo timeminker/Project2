@@ -2,6 +2,7 @@
 <html lang="en" dir="ltr">
   <%- include ('../partials/head.ejs') %>
   <body>
+    <h1 id="shop-name"><a href="/bkbikes/">BROOKLYN BIKES</a> </h1>
     <div id="edit-page">
       <h1>Edit <%=bike.year%> <%=bike.manufacturer%> <%=bike.model%></h1><br>
       <form action="/bkbikes/<%=bike.id%>?_method=PUT" method="POST">

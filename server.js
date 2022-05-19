@@ -12,6 +12,8 @@ const seedData = require('./models/data.js')
 require('dotenv').config()
 const GOOGLE_API_KEY = process.env.API_KEY_GOOGLE_MAPS
 const bikesController = require('./controllers/bikes.js')
+
+//For some reason this controller acts up and decided not to send data to db
 // const reviewsController = require('./controllers/reviews.js')
 //___________________
 //Port
@@ -43,6 +45,7 @@ db.on('disconnected', () => console.log('mongo disconnected'));
 
 //controllers
 app.use(bikesController)
+// app.use(reviewsController)
 
 //use public folder for static assets
 app.use(express.static('public'));
@@ -70,29 +73,6 @@ app.use(methodOverride('_method'));// allow POST, PUT and DELETE from a form
 //   })
 // })
 
-// //localhost:3000
-// app.get('/bkbikes' , (req, res) => {
-//   Bike.find({}, (err, allBikes) => {
-//     res.render(
-//       'index.ejs',
-//       {
-//         bikes: allBikes
-//       })
-//   })
-// });
-//
-// //new bike
-// app.get('/bkbikes/new', (req, res) => {
-//   res.render('new.ejs')
-// })
-//
-// //create
-// app.post('/bkbikes', (req, res) => {
-//   Bike.create(req.body, (err, createdBike) => {
-//     res.redirect('/bkbikes')
-//   })
-// })
-
 //review page
 app.get('/review/:id', (req, res) => {
   Bike.findById(req.params.id, (err, foundBike) => {
@@ -113,117 +93,6 @@ app.post('/review/:id', (req, res) => {
     })
   })
 })
-
-// app.post('/review/:id', (req, res) => {
-//   Bike.findById(req.params.id, (err, foundBike) => {
-//     Review.create(req.body, (err, createdReview) => {
-//       foundBike.reviews.push(createdReview)
-//       foundBike.save((err, data) => {
-//         console.log(createdReview);
-//         res.redirect('/bkbikes')
-//       })
-//     })
-//   })
-// })
-// app.post('/review', (req, res) => {
-//     Review.create(req.body, (err, createdReview) => {
-//       // foundBike.reviews.push(createdReview)
-//       // foundBike.save((err, data) => {
-//         console.log(createdReview);
-//         // res.redirect('/bkbikes')
-//       })
-//     })
-
-// //contact page
-// app.get('/bkbikes/info', (req, res) => {
-//   res.render('location.ejs',
-//   {
-//     GOOGLE_API_KEY: process.env.API_KEY_GOOGLE_MAPS
-//   })
-//
-// })
-//
-// //road bikes page
-// app.get('/bkbikes/road' , (req, res) => {
-//   Bike.find({}, (err, allBikes) => {
-//     res.render(
-//       'road.ejs',
-//       {
-//         bikes: allBikes
-//       })
-//   })
-// });
-//
-// //mountain bikes page
-// app.get('/bkbikes/mountain' , (req, res) => {
-//   Bike.find({}, (err, allBikes) => {
-//     res.render(
-//       'mtb.ejs',
-//       {
-//         bikes: allBikes
-//       })
-//   })
-// });
-//
-// //gravel bikes page
-// app.get('/bkbikes/gravel' , (req, res) => {
-//   Bike.find({}, (err, allBikes) => {
-//     res.render(
-//       'gravel.ejs',
-//       {
-//         bikes: allBikes
-//       })
-//   })
-// });
-//
-// //custom bikes page
-// app.get('/bkbikes/custom' , (req, res) => {
-//   Bike.find({}, (err, allBikes) => {
-//     res.render(
-//       'custom.ejs',
-//       {
-//         bikes: allBikes
-//       })
-//   })
-// });
-//
-// //edit bike
-// app.get('/bkbikes/edit/:id', (req, res) => {
-//   Bike.findById(req.params.id, (err, foundBike) => {
-//     res.render(
-//       'edit.ejs',
-//       {
-//         bike: foundBike
-//       }
-//     )
-//   })
-// })
-//
-// //show individual bikes
-// app.get('/bkbikes/:id', (req, res) => {
-//   Bike.findById(req.params.id, (err, foundBike) => {
-//     res.render(
-//       'show.ejs',
-//       {
-//         bike: foundBike
-//       }
-//     )
-//   })
-// })
-//
-// // put
-// app.put('/bkbikes/:id', (req, res) => {
-//   Bike.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updatedBike) => {
-//     res.redirect('/bkbikes')
-//   })
-// })
-//
-// //delete bike
-// app.delete('/bkbikes/:id', (req, res) => {
-//   Bike.findByIdAndRemove(req.params.id, (err, deleteBike) => {
-//     res.redirect('/bkbikes')
-//   })
-// })
 
 //for heroku
 app.get('/', (req, res) => {

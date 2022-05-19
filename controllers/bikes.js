@@ -1,6 +1,8 @@
 const express = require('express')
 const router = express.Router()
 const Bike = require('../models/bikesschema.js')
+const Review = require('../models/reviews.js')
+
 
 //localhost:3000
 router.get('/bkbikes' , (req, res) => {
@@ -12,6 +14,13 @@ router.get('/bkbikes' , (req, res) => {
       })
   })
 });
+
+//delete bike
+router.delete('/bkbikes/:id', (req, res) => {
+  Bike.findByIdAndRemove(req.params.id, (err, deleteBike) => {
+    res.redirect('/bkbikes')
+  })
+})
 
 //new bike
 router.get('/bkbikes/new', (req, res) => {
@@ -109,11 +118,6 @@ router.put('/bkbikes/:id', (req, res) => {
   })
 })
 
-//delete bike
-router.delete('/bkbikes/:id', (req, res) => {
-  Bike.findByIdAndRemove(req.params.id, (err, deleteBike) => {
-    res.redirect('/bkbikes')
-  })
-})
+
 
 module.exports = router

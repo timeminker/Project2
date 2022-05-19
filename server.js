@@ -12,7 +12,7 @@ const seedData = require('./models/data.js')
 require('dotenv').config()
 const GOOGLE_API_KEY = process.env.API_KEY_GOOGLE_MAPS
 const bikesController = require('./controllers/bikes.js')
-const reviewsController = require('./controllers/reviews.js')
+// const reviewsController = require('./controllers/reviews.js')
 //___________________
 //Port
 //___________________
@@ -93,26 +93,26 @@ app.use(methodOverride('_method'));// allow POST, PUT and DELETE from a form
 //   })
 // })
 
-// //review page
-// app.get('/review/:id', (req, res) => {
-//   Bike.findById(req.params.id, (err, foundBike) => {
-//     res.render(
-//       'review.ejs',
-//       {
-//         bike: foundBike
-//       }
-//     )
-//   })
-// })
-//
-// // create new review
-// app.post('/review/:id', (req, res) => {
-//   Review.create(req.body, (err, review) => {
-//     Bike.findByIdAndUpdate(req.params.id, {$push:{reviews: review}}, {new:true}, (err, newData) => {
-//       res.redirect(`/bkbikes/${req.params.id}`)
-//     })
-//   })
-// })
+//review page
+app.get('/review/:id', (req, res) => {
+  Bike.findById(req.params.id, (err, foundBike) => {
+    res.render(
+      'review.ejs',
+      {
+        bike: foundBike
+      }
+    )
+  })
+})
+
+// create new review
+app.post('/review/:id', (req, res) => {
+  Review.create(req.body, (err, review) => {
+    Bike.findByIdAndUpdate(req.params.id, {$push:{reviews: review}}, {new:true}, (err, newData) => {
+      res.redirect(`/bkbikes/${req.params.id}`)
+    })
+  })
+})
 
 // app.post('/review/:id', (req, res) => {
 //   Bike.findById(req.params.id, (err, foundBike) => {
